@@ -21,7 +21,7 @@ final class PasswordValidatorTest extends TestCase
             ->then(fn($password) => $this->assertFalse((new PasswordValidator())->validate($password)));
     }
 
-    public function testPasswordLengthIsValidWhenLengthEqualOrGreaterThan8Characters(): void
+    public function testPasswordIsValidWhenItSatisfiesAllRequirements(): void
     {
         $this->minimumEvaluationRatio(0.3)->forAll(string())
             ->when(fn($password) => strlen($password) >= 8)

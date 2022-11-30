@@ -21,11 +21,13 @@ final class PasswordValidatorTest extends TestCase
             ->then(fn($password) => $this->assertFalse((new PasswordValidator())->validate($password)));
     }
 
-    public function testPasswordLengthIsInvalidWhenNoUppercase(): void
+    public function testPasswordIsInvalidWhenNoUppercase(): void
     {
         $this->minimumEvaluationRatio(0.3)->forAll(string())
-            ->when(fn($password) => preg)
-            ->then(fn($password) => $this->assertFalse((new PasswordValidator())->validate($password)));
+            ->when(fn($password) => preg_match('/[A-Z]/', $password) === 0)
+            ->then(function($password) {
+                $this->assertFalse((new PasswordValidator())->validate($password), "$password should not be valid");
+            });
     }
 
     public function testPasswordIsValidWhenItSatisfiesAllRequirements(): void

@@ -8,6 +8,6 @@ final class PasswordValidator
 {
     public function validate(string $password): bool
     {
-        return false;
+        return strlen($password) >= 8;
     }
 }

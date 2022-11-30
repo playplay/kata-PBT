@@ -57,9 +57,9 @@ class SampleTest extends TestCase
         function reverseString(string $string) {
 
             // 2- Uncomment the next block of code
-//            if(strlen($string) > 10) {
-//                return $string . "a";
-//            }
+            if(strlen($string) > 10) {
+                return $string . "a";
+            }
 
             return strrev($string);
         }
@@ -67,7 +67,7 @@ class SampleTest extends TestCase
         $this->forAll(string())
             ->then(function($string) {
                 // 1- Uncomment the next line to see all generated values
-//                var_dump($string);
+                var_dump($string);
                 $this->assertEquals($string, reverseString(reverseString($string)), "$string couldn't be reversed.");
             });
     }

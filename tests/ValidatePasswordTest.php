@@ -33,33 +33,36 @@ final class ValidatePasswordTest extends TestCase
     public function testValidPasswordsHaveMoreThan8Characters(): void
     {
         $this->forAll(
-            string()
+            suchThat(
+                fn($x) => ($this->sut)($x),
+                string()
+            )
         )
-            ->when(fn($x) => ($this->sut)($x))
-            ->then(fn ($x) => $this->assertTrue(strlen($x) > 8));
+        //->when(fn($x) => ($this->sut)($x))
+        ->then(fn ($x) => $this->assertTrue(strlen($x) > 8));
     }
 
     public function testPasswordIsInvalidWithoutAtLeastOneUppercaseChar(): void
     {
         $this->forAll(
             suchThat(
-                fn($x) => strlen($x) > 8 && preg_match('/[A-Z]/', $x) !== 0,
+                fn($x) => preg_match('/[A-Z]/', $x) === 0,
                 string()
             )
         )
-            ->then(fn($x) => $this->assertFalse(($this->sut)($x)));
+        ->then(fn($x) => $this->assertFalse(($this->sut)($x)));
     }
 
-    //public function testValidPasswsordsHaveMoreThan8Characters(): void
-    //{
-    //    $this->forAll(
-    //        suchThat(
-    //            fn($x) => ($this->sut)($x),
-    //            string()
-    //        )
-    //    )
-    //        ->then(fn ($x) => $this->assertTrue(strlen($x) > 8));
-    //}
+    public function testValidPasswordsHaveAtLeastOneUppercaseChar(): void
+    {
+        $this->forAll(
+            suchThat(
+                fn($x) => ($this->sut)($x),
+                string()
+            )
+        )
+        ->then(fn ($x) => $this->assertMatchesRegularExpression('/[A-Z]/', $x));
+    }
 
 
 }

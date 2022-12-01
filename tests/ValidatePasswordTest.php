@@ -33,11 +33,9 @@ final class ValidatePasswordTest extends TestCase
     public function testValidPasswordsHaveMoreThan8Characters(): void
     {
         $this->forAll(
-            suchThat(
-                fn($x) => ($this->sut)($x),
-                string()
-            )
+            string()
         )
+            ->when(fn($x) => ($this->sut)($x))
             ->then(fn ($x) => $this->assertTrue(strlen($x) > 8));
     }
 

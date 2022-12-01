@@ -12,4 +12,6 @@ Here are some resources.
 
 [📄 Choosing properties for property-based testing - Scott Wlaschin](https://fsharpforfunandprofit.com/posts/property-based-testing-2/)
 
+[📄📄📄... The "Property Based Testing" series - Scott Wlaschin](https://fsharpforfunandprofit.com/series/property-based-testing/)
+
 [📄 Metamorphic Testing - Hillel Wayne](https://hillelwayne.com/post/metamorphic-testing/)

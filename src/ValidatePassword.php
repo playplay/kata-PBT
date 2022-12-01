@@ -8,6 +8,6 @@ final class ValidatePassword
 {
     public function __invoke(string $password): bool
     {
-        return strlen($password) > 8;
+        return strlen($password) > 8 && preg_match('/[A-Z]/', $password) === 0;
     }
 }

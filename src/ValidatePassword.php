@@ -8,6 +8,6 @@ final class ValidatePassword
 {
     public function __invoke(string $password): bool
     {
-        return true;
+        return strlen($password) > 8;
     }
 }
